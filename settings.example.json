@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": ["WebSearch", "Bash(git add *)"]
+  },
+  "cleanupPeriodDays": 365,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 60,
+            "command": "<python> <config>/skills/cost-report/scripts/ingest.py hook --scan"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 30,
+            "command": "<python> <config>/skills/cost-report/scripts/ingest.py hook"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "<python> <config>/skills/cost-report/scripts/statusline.py"
+  }
+}

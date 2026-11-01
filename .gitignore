@@ -1,0 +1,64 @@
+# =============================================================================
+# CLAUDE_CONFIG_DIR — portable, version-controlled Claude Code user config
+#
+# Strategy: IGNORE EVERYTHING by default, then explicitly ALLOW only the
+# portable, non-sensitive files/folders. Anything Claude Code writes here at
+# runtime (credentials, sessions, projects, shell snapshots, caches, plugins)
+# stays local and untracked automatically — no need to enumerate it.
+# =============================================================================
+
+# --- Ignore every top-level entry in this directory by default ---
+/*
+
+# --- Meta files (always tracked) ---
+!.gitignore
+!.gitattributes
+!README.md
+!LICENSE
+!SECURITY.md
+!requirements-dev.txt
+!settings.example.json
+!.github/
+!scripts/
+
+# --- Portable, non-sensitive user config (safe to share across machines) ---
+!CLAUDE.md
+!skills/
+!policy/
+!commands/
+!agents/
+!hooks/
+!output-styles/
+!rules/
+!standards/
+!docs/
+
+# --- Explicitly re-assert exclusion of known-sensitive items, in case a future
+#     allow rule above ever widens scope. (Belt-and-suspenders.) ---
+.credentials.json
+.last-cleanup
+mcp-needs-auth-cache.json
+backups/
+projects/
+sessions/
+session-env/
+shell-snapshots/
+file-history/
+debug/
+ide/
+plans/
+plugins/
+statsig/
+todos/
+skills/synced/
+skills/.trash/
+# skill-creator eval workspaces (local only)
+skills/*-workspace/
+
+# Python bytecode from skill scripts/tests
+review-history/
+tdd-history/
+settings.json
+policy/local.env
+__pycache__/
+*.pyc

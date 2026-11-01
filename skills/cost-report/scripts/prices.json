@@ -1,0 +1,25 @@
+{
+  "_comment": [
+    "USD per million tokens, Anthropic first-party list prices. Applied at query time: each request is priced",
+    "with the entry in force at its timestamp ('from' is an inclusive ISO date; null = since the beginning).",
+    "To change a price, append a new entry with a 'from' date; never edit an old one.",
+    "verified: claude-code = matched Claude Code's own cost figure to the cent (design.md section 3);",
+    "docs = published price list (claude-api skill, cached 2026-09-25); assumed = standard multipliers",
+    "(cache read 0.1x input, 5m write 1.25x, 1h write 2x), check against https://www.anthropic.com/pricing.",
+    "fast_multiplier is unverified: no fast-mode request has been observed yet.",
+    "Cache-read rates that look odd but are as published: claude-fable-5-1 $0.25 ('0.025x, a quarter of",
+    "Claude Fable 5's'), claude-fable-5 $1.00, claude-opus-5-5 and claude-sonnet-5-5 $0.20."
+  ],
+  "server_tools": {"web_search_per_request": 0.01},
+  "models": {
+    "claude-fable-5-1":  [{"from": null, "input": 10.0, "output": 50.0, "cache_read": 0.25, "cache_write_5m": 12.5, "cache_write_1h": 20.0, "verified": "docs"}],
+    "claude-fable-5":    [{"from": null, "input": 10.0, "output": 50.0, "cache_read": 1.00, "cache_write_5m": 12.5, "cache_write_1h": 20.0, "verified": "docs"}],
+    "claude-opus-5-5":   [{"from": null, "input": 4.0,  "output": 20.0, "cache_read": 0.20, "cache_write_5m": 5.0,  "cache_write_1h": 8.0,  "fast_multiplier": 2.0, "verified": "claude-code"}],
+    "claude-opus-5":     [{"from": null, "input": 5.0,  "output": 25.0, "cache_read": 0.50, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "fast_multiplier": 2.0, "verified": "assumed"}],
+    "claude-opus-4-8":   [{"from": null, "input": 5.0,  "output": 25.0, "cache_read": 0.50, "cache_write_5m": 6.25, "cache_write_1h": 10.0, "fast_multiplier": 2.0, "verified": "assumed"}],
+    "claude-sonnet-5-5": [{"from": null, "input": 2.0,  "output": 10.0, "cache_read": 0.20, "cache_write_5m": 2.5,  "cache_write_1h": 4.0,  "verified": "claude-code"}],
+    "claude-sonnet-5":   [{"from": null, "input": 2.0,  "output": 10.0, "cache_read": 0.20, "cache_write_5m": 2.5,  "cache_write_1h": 4.0,  "verified": "assumed"}],
+    "claude-sonnet-4-6": [{"from": null, "input": 3.0,  "output": 15.0, "cache_read": 0.30, "cache_write_5m": 3.75, "cache_write_1h": 6.0,  "verified": "assumed"}],
+    "claude-haiku-4-5":  [{"from": null, "input": 1.0,  "output": 5.0,  "cache_read": 0.10, "cache_write_5m": 1.25, "cache_write_1h": 2.0,  "verified": "claude-code"}]
+  }
+}
